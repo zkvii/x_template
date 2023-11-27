@@ -1,6 +1,6 @@
 # x_template
 
 <!-- todos -->
-- [ ] mybatis+generator
+- [x] mybatis+generator
 - [ ] redis
 - [ ] 
