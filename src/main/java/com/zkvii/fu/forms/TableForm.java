@@ -2,6 +2,7 @@ package com.zkvii.fu.forms;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
 import lombok.ToString;
 
 @Data
@@ -9,11 +10,8 @@ import lombok.ToString;
 @ToString
 public class TableForm {
     private String tableName;
-    private String tableComment;
     private String columnName;
     private String columnType;
     private String columnComment;
-    private String columnKey;
-    private String columnDefault;
-    private String isNullable;
+    private boolean isNullable;
 }
