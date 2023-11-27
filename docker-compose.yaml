@@ -1,0 +1,26 @@
+version: '3.8' # Use your preferred Docker Compose version
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: my-mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dev
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306" # Map container port 3306 to host port 3306 (optional, adjust if needed)
+    volumes:
+      - mysql-data:/var/lib/mysql # Persist MySQL data (optional, for data persistence)
+
+  redis-cache:
+    image: redis:latest
+    container_name: my-redis-cache
+    ports:
+      - "6379:6379" # Map container port 6379 to host port 6379 (optional, adjust if needed)
+    volumes:
+      - redis-data:/data # Persist Redis data (optional, for data persistence)
+
+volumes:
+  mysql-data: # Volume for MySQL data persistence (optional)
+  redis-data: # Volume for Redis data persistence (optional)
