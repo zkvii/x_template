@@ -4,39 +4,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>User Table</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-    <h1>User Table</h1>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <!-- Add more columns if needed -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Loop through the users and display each user as a row -->
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
-                <!-- Add more columns if needed -->
-            </tr>
-        </tbody>
-    </table>
+<h1>hello <span th:text="${message}"></span></h1>
 </body>
 </html>
