@@ -27,7 +27,7 @@
             <el-table
               ref="multipleTable"
               :data="activateTableData"
-              style="width: 75%"
+              style="width: 80%"
               @selection-change="handleSelectionChange">
               <el-table-column
                 type="selection"
@@ -57,10 +57,19 @@
                 show-overflow-tooltip>
               </el-table-column>
               <el-table-column
-                property="columnJavaType"
                 label="columnJavaType"
-                width="150"
-                show-overflow-tooltip>
+                width="200"
+              >
+                <template v-slot="scope">
+                  <el-select v-model="scope.row.columnJavaType" placeholder="请选择">
+                    <el-option
+                      v-for="item in columnJavaTypeOptions"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </template>
               </el-table-column>
               <el-table-column
                 label="isNullable"
@@ -92,6 +101,25 @@ export default {
 
   data() {
     return {
+      columnTypeOptions:[
+        {
+          label: 'varchar(255)',
+          value: 'varchar(255)'
+        }
+      ],
+      columnJavaTypeOptions:[
+        {
+          label: 'String',
+          value: 'String'
+        },
+        {
+          label: 'int',
+          value: 'int'
+        },{
+          label: 'LocalDateTime',
+          value: 'LocalDateTime'
+        }
+      ],
       editing: false,
       editableTabs: [
         {tableName: 'tableName',
@@ -107,6 +135,7 @@ export default {
           columnType: 'varchar(255)',
           columnComment: '姓名',
           columnJavaName: 'name',
+          columnJavaType: 'String',
           isNullable: '否'
         },
         {
@@ -114,6 +143,7 @@ export default {
           columnType: 'varchar(255)',
           columnComment: '姓名',
           columnJavaName: 'name',
+          columnJavaType: 'String',
           isNullable: false
         },
    ],
@@ -148,8 +178,7 @@ export default {
       )
     },
     deleteColumns(){
-      this.activateTableData=this.activateTableData.filter(item=> !this.multipleSelection.some(removeItem=>removeItem.columnName!==item.columnName)
-      )
+      this.activateTableData = this.activateTableData.filter(item => !this.multipleSelection.includes(item))
       // console.log(this.multipleSelection)
     },
     exportTemplate(){
