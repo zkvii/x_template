@@ -19,4 +19,5 @@ public interface EchoDao {
             "IS_NULLABLE as isNullable" +
             " FROM information_schema.columns WHERE table_name = #{tableName}")
     List<TableForm> getTableInfo(String tableName);
+
 }

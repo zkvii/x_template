@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+x_front/node_modules
+x_front/dist
+x_front/.history
