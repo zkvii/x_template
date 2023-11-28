@@ -2,6 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id "com.palantir.docker" version "0.35.0"
+	id "com.avast.gradle.docker-compose" version "0.17.5"
 }
 
 group = 'com.zkvii'
@@ -43,4 +45,23 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+//bootJar {
+//	// Configuration for the Spring Boot jar
+//	archiveFileName = 'my-application.jar' // Replace with your jar file name
+//	// Additional configurations if required
+//}
+bootJar {
+	archiveBaseName = 'zkvii.jar'
+	archiveVersion.set('0.0.1-SNAPSHOT')
+}
+docker {
+	name "x_template"
+	files bootJar.archiveFile
+	buildArgs(['JAR_FILE': "${bootJar.archiveBaseName.get()}-${bootJar.archiveVersion.get()}.jar"])
+	dockerfile file('/src/docker/Dockerfile')
+}
 
+//dockerCompose {
+//	useComposeFiles = ['docker-compose.yaml']
+//
+//}
